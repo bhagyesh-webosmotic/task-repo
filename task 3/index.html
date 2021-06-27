@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Task 3</title>
+ </head>
+ <body onload="autoSelectMonth()">
+  <select name="months" id="months" onchange="myFunc2()">
+   <option value="0">january</option>
+   <option value="1">february</option>
+   <option value="2">march</option>
+   <option value="3">april</option>
+   <option value="4">may</option>
+   <option value="5">june</option>
+   <option value="6">july</option>
+   <option value="7">august</option>
+   <option value="8">september</option>
+   <option value="9">october</option>
+   <option value="10">november</option>
+   <option value="11">december</option>
+  </select>
+  <select id="selectedYear" onchange="myFunc2()"></select>
+  <input type="text" id="text" />
+  <button id="btn">view</button>
+   <table id="myTable" class="calender" style="border: 1px solid #000" onclick="clickHandler(event)">
+    <tr id="dayName">
+     <td>Sun</td>
+     <td>Mon</td>
+     <td>Tue</td>
+     <td>Wed</td>
+     <td>Thu</td>
+     <td>Fri</td>
+     <td>Sat</td>
+    </tr>
+   </table>
+  </div>
+  <script src="./index.js"></script>
+ </body>
+</html>

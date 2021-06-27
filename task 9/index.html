@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Task9</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <form>
+        <h2>Dynamically adding element inside the form.</h2>
+        <br />
+        <input type="text" name="idName" class="formFields" />
+        <select name="element">
+            <option value="text">Text</option>
+            <option value="date">Date</option>
+            <option value="datetime-local">Datetime</option>
+            <option value="number">Number</option>
+            <option value="color">Color</option>
+            <option value="range" min="0" max="50">Range</option>
+            <option value="email">E-mail</option>
+            <option value="submit">Submit</option>
+        </select>
+        <button id="Refresh" onclick="location.reload();">Refresh</button>
+        <input type="button" value="Add" onclick="add(document.forms[0][0].value, document.forms[0].element.value)" />
+    </form>
+    <table id="fieldsTable"></id></table>
+    <script src="./index.js"></script>
+</body>
+
+</html>

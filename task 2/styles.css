@@ -1,0 +1,47 @@
+.calender {
+  display: none;
+}
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #777;
+}
+body {
+  height: 100vh;
+  background: #355c7d; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #c06c84,
+    #6c5b7b,
+    #355c7d
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #c06c84,
+    #6c5b7b,
+    #355c7d
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
