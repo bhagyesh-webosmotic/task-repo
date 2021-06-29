@@ -13,13 +13,13 @@ function saveFormData(e) {
       if (document.querySelector(`[key="userId"]`).value == LSelement.userId) {
         console.log("matched data");
         const index = dataArray.indexOf(LSelement);
-        console.log(index);
         dataArray.splice(index, 1);
       } else {
-        console.log("inserting new data");
+        console.log("about to inserting new data");
       }
     });
 
+    console.log("inserting new data");
     elementsArray.forEach((element) => {
       if (
         element.type != "null" &&
@@ -73,15 +73,18 @@ function saveFormData(e) {
     }
   }
   displayFormInfo();
-  location.reload();
+  // location.reload();
 }
 function getRandomNumber() {
   return randomNumber;
 }
 function dateDisplay(value) {
-  console.log(value);
-  let date = new Date(parseInt(value));
-  return date.toString();
+  // value is string
+  let date = new Date(parseInt(value)); //converting value into number and passing it to DATE() function
+  //date is object
+  let formatedDate = date.toString();
+  // formatedDate is string
+  return formatedDate;
 }
 function validate() {
   let allAreFilled = true;
