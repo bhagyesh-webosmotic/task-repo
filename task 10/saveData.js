@@ -13,6 +13,9 @@ function saveFormData(e) {
     dataArray.forEach((LSelement) => {
       if (document.querySelector(`[key="userId"]`).value == LSelement.userId) {
         console.log("matched data");
+        const index = dataArray.indexOf(LSelement);
+        console.log(index);
+        dataArray.splice(index, 1);
       } else {
         console.log("new data");
       }
@@ -67,6 +70,7 @@ function saveFormData(e) {
     localStorage["jsonform"] = JSON.stringify(dataArray);
   }
   displayFormInfo();
+  location.reload();
 }
 function getRandomNumber() {
   return randomNumber;
