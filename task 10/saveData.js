@@ -66,8 +66,15 @@ function saveFormData(e) {
       }
     });
 
-    dataArray.push(obj);
-    localStorage["jsonform"] = JSON.stringify(dataArray);
+    if (validate() == false) {
+      location.reload();
+    } else {
+      dataArray.push(obj);
+      localStorage["jsonform"] = JSON.stringify(dataArray);
+    }
+
+    // dataArray.push(obj);
+    // localStorage["jsonform"] = JSON.stringify(dataArray);
   }
   displayFormInfo();
   location.reload();
@@ -79,4 +86,27 @@ function dateDisplay(value) {
   console.log(value);
   let date = new Date(parseInt(value));
   return date.toString();
+}
+function validate() {
+  let allAreFilled = true;
+  document
+    .getElementById("jsonForm")
+    .querySelectorAll("[required]")
+    .forEach(function (i) {
+      if (!allAreFilled) return;
+      if (!i.value) allAreFilled = false;
+      if (i.type === "radio") {
+        let radioValueCheck = false;
+        document.getElementsByName("gender").forEach(function (r) {
+          if (r.checked) radioValueCheck = true;
+        });
+        allAreFilled = radioValueCheck;
+      }
+    });
+  if (!allAreFilled) {
+    alert("Fill all the fields");
+    return false;
+  } else {
+    return true;
+  }
 }
