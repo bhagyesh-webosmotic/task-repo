@@ -73,7 +73,7 @@ function saveFormData(e) {
     }
   }
   displayFormInfo();
-  // location.reload();
+  location.reload();
 }
 function getRandomNumber() {
   return randomNumber;
@@ -82,9 +82,13 @@ function dateDisplay(value) {
   // value is string
   let date = new Date(parseInt(value)); //converting value into number and passing it to DATE() function
   //date is object
-  let formatedDate = date.toString();
-  // formatedDate is string
-  return formatedDate;
+  if (date == "Invalid Date") {
+    return value;
+  } else {
+    let formatedDate = date.toString();
+    // formatedDate is string
+    return formatedDate;
+  }
 }
 function validate() {
   let allAreFilled = true;
