@@ -18,17 +18,17 @@ function attrib(
     input.setAttribute("id", id);
     input.classList.add(className);
     if (type == "checkbox" || type == "radio" || type == "select") {
-      input.setAttribute("no-placeholder", placeholder);
+      input.removeAttribute("placeholder");
     } else {
       input.setAttribute("placeholder", placeholder);
     }
     if (type == "checkbox") {
-      input.setAttribute("no-name", name);
+      input.removeAttribute("name");
     } else {
       input.setAttribute("name", name);
     }
     if (type == "checkbox") {
-      input.setAttribute("not-required", required);
+      input.removeAttribute("required");
     } else {
       input.setAttribute("required", required);
     }
