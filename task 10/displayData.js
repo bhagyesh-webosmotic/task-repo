@@ -25,17 +25,31 @@ function displayFormInfo() {
           }
         } else {
           let objectLenght = Object.keys(dataArray[i]).length;
-          let objectKey = Object.keys(dataArray[i]);
           let objectValue = Object.values(dataArray[i]);
           //  console.log(objectLenght); //ith object lenght
-          //  console.log(objectKey[i]); //ith object key [from array]
           //  console.log(objectValue); //ith object value [from array]
-          for (j = 0; j < objectLenght; j++) {
+          for (j = 0; j < objectLenght + 2; j++) {
             let td = document.createElement("TD");
             td.setAttribute("id", `myTd${i}-${j}`);
             td.setAttribute("value", j);
-            let txtNode = document.createTextNode(objectValue[j]);
-            td.appendChild(txtNode);
+            if (j == objectLenght && j < objectLenght + 1) {
+              let editBtn = document.createElement("BUTTON");
+              editBtn.setAttribute("id", objectValue[0]);
+              editBtn.setAttribute("input-type", "button");
+              editBtn.setAttribute("onclick", "editFormData(event);");
+              editBtn.innerHTML = "Edit";
+              td.appendChild(editBtn);
+            } else if (j > objectLenght && j == objectLenght + 1) {
+              let dltBtn = document.createElement("BUTTON");
+              dltBtn.setAttribute("id", objectValue[0]);
+              dltBtn.setAttribute("input-type", "button");
+              dltBtn.setAttribute("onclick", "removeFormData(event);");
+              dltBtn.innerHTML = "Delete";
+              td.appendChild(dltBtn);
+            } else {
+              let txtNode = document.createTextNode(objectValue[j]);
+              td.appendChild(txtNode);
+            }
             tr.appendChild(td);
           }
         }

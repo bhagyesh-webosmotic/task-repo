@@ -1,5 +1,6 @@
 var randomNumber = uuidv4();
 function saveFormData(e) {
+  e.preventDefault();
   if (localStorage["jsonform"] === undefined) {
     localStorage["jsonform"] = "[]";
   } else {
@@ -10,7 +11,6 @@ function saveFormData(e) {
 
     elementsArray.forEach((element) => {
       if (
-        element.attr &&
         element.type != "submit" &&
         element.type != "reset" &&
         element.type != "radio" &&
@@ -50,6 +50,7 @@ function saveFormData(e) {
           obj[element.key] = getRandomNumber();
         } else if (element.type == "null" && element.key == "createdAt") {
           var value = document.querySelector(`[key="${element.key}"]`).value;
+          console.log(value);
           obj[element.key] = dateDisplay(value);
         }
       }
@@ -63,6 +64,7 @@ function getRandomNumber() {
   return randomNumber;
 }
 function dateDisplay(value) {
+  console.log(value);
   let date = new Date(parseInt(value));
   return date.toString();
 }
