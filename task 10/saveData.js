@@ -8,7 +8,6 @@ function saveFormData(e) {
     dataArray = JSON.parse(localStorage["jsonform"]);
     let obj = {};
     let chkboxArr = [];
-    console.log(document.querySelector(`[key="userId"]`).value);
 
     dataArray.forEach((LSelement) => {
       if (document.querySelector(`[key="userId"]`).value == LSelement.userId) {
@@ -17,7 +16,7 @@ function saveFormData(e) {
         console.log(index);
         dataArray.splice(index, 1);
       } else {
-        console.log("new data");
+        console.log("inserting new data");
       }
     });
 
@@ -58,6 +57,8 @@ function saveFormData(e) {
         }
         obj[element.key] = chkboxArr;
       } else if (element.type == "null" && element.key == "userId") {
+        console.log("inserting id");
+        debugger;
         obj[element.key] = getRandomNumber();
       } else if (element.type == "null" && element.key == "createdAt") {
         var value = document.querySelector(`[key="${element.key}"]`).value;
@@ -72,9 +73,6 @@ function saveFormData(e) {
       dataArray.push(obj);
       localStorage["jsonform"] = JSON.stringify(dataArray);
     }
-
-    // dataArray.push(obj);
-    // localStorage["jsonform"] = JSON.stringify(dataArray);
   }
   displayFormInfo();
   location.reload();
