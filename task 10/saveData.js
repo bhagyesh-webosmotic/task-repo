@@ -22,6 +22,7 @@ function saveFormData(e) {
 
     elementsArray.forEach((element) => {
       if (
+        element.type != "null" &&
         element.type != "submit" &&
         element.type != "reset" &&
         element.type != "radio" &&
@@ -57,12 +58,9 @@ function saveFormData(e) {
         }
         obj[element.key] = chkboxArr;
       } else if (element.type == "null" && element.key == "userId") {
-        console.log("inserting id");
-        debugger;
         obj[element.key] = getRandomNumber();
       } else if (element.type == "null" && element.key == "createdAt") {
         var value = document.querySelector(`[key="${element.key}"]`).value;
-        console.log(value);
         obj[element.key] = dateDisplay(value);
       }
     });
