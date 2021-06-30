@@ -8,7 +8,7 @@
     <title>Task 5</title>
   </head>
   <body onload="autoSelectMonth()">
-    <select name="months" id="months" onchange="myFunc2()" >
+    <select name="months" id="months" onchange="myFunc()" >
       <option value="0">january</option>
       <option value="1">february</option>
       <option value="2">march</option>
@@ -22,21 +22,13 @@
       <option value="10">november</option>
       <option value="11">december</option>
      </select>
-    <select id="selectedYear" onchange="myFunc2()"></select>
+    <select id="selectedYear" onchange="myFunc()"></select>
       <table
         id="myTable"
         style="border: 1px solid #000"
         onclick="clickHandler(event)" 
       >                                   <!------------------------------------- dates table ---->
-        <tr id="dayName">
-          <td>Sun</td>
-          <td>Mon</td>
-          <td>Tue</td>
-          <td>Wed</td>
-          <td>Thu</td>
-          <td>Fri</td>
-          <td>Sat</td>
-        </tr>
+        
       </table>
       <div id="addModal" class="modal">
         <div class="modal-content">
@@ -57,6 +49,8 @@
         </div>
       </div>
     </div>
+    <script src="./popupModal.js"></script>
+    <script src="./storage.js"></script>
     <script src="./index.js"></script>
     <script></script>
   </body>
