@@ -1,4 +1,8 @@
 myFunc();
+//for auto selecting month on the month dropdown list
+function autoSelectMonth() {
+  document.getElementById("months").value = new Date().getMonth();
+}
 //for select year dropdown//
 var currentYear = new Date().getFullYear(),
   maxYear = currentYear + 9;
