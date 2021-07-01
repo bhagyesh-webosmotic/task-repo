@@ -2,9 +2,9 @@ const myForm = document.getElementById("jsonForm");
 
 function renderForm(obj) {
   obj.forEach((element) => {
-    var label = document.createElement("label");
+    let label = document.createElement("label");
     var lineBreak = document.createElement("br");
-    var input = document.createElement("input");
+    let input = document.createElement("input");
     switch (element.type) {
       case "null":
         input.attributes = attrib(input, element);
@@ -14,28 +14,28 @@ function renderForm(obj) {
         break;
 
       case "textarea":
-        var input = document.createElement("textarea");
-        input.attributes = attrib(input, element);
+        let textarea = document.createElement("textarea");
+        textarea.attributes = attrib(textarea, element);
         labelAttrib(label, element.label, element.attr.id);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
-        myForm.appendChild(input);
+        myForm.appendChild(textarea);
         myForm.appendChild(lineBreak);
         break;
 
       case "select":
-        var input = document.createElement("select");
-        input.attributes = attrib(input, element);
+        let select = document.createElement("select");
+        select.attributes = attrib(select, element);
         element.options.forEach((optnItr) => {
-          var optn = document.createElement("option");
-          input.attributs = optnAttrib(optn, optnItr);
-          input.type = element.type;
-          input.appendChild(optn);
+          let optn = document.createElement("option");
+          select.attributs = optnAttrib(optn, optnItr);
+          select.type = element.type;
+          select.appendChild(optn);
         });
         labelAttrib(label, element.label, element.attr.id);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
-        myForm.appendChild(input);
+        myForm.appendChild(select);
         myForm.appendChild(lineBreak);
         break;
 
@@ -68,11 +68,11 @@ function renderForm(obj) {
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
         element.options.forEach((optnItr) => {
-          var input = document.createElement("input");
-          input.attributs = optnAttrib(input, optnItr);
-          attrib(input, element);
-          myForm.appendChild(input);
-          var optlabel = document.createElement("label");
+          let checkbox = document.createElement("input");
+          checkbox.attributs = optnAttrib(checkbox, optnItr);
+          attrib(checkbox, element);
+          myForm.appendChild(checkbox);
+          let optlabel = document.createElement("label");
           labelAttrib(
             optlabel,
             optnItr.innerHTML,
