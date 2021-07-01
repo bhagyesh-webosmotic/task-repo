@@ -40,7 +40,7 @@ function optnAttrib(input, option) {
       } else if (key == "className") {
         input.setAttribute("class", option[key]);
       } else if (typeof option[key] === "object") {
-        setAttr(input, option[key]);
+        optnAttrib(input, option[key]);
       } else if (key == "innerHTML") {
         input.innerHTML = option[key];
       } else if (key == "value") {
