@@ -7,7 +7,7 @@ function renderForm(obj) {
     switch (element.type) {
       case "null":
         var input = document.createElement("input");
-        attrib(input, element.type, element.key);
+        input.attributes = attrib(input, element);
         input.hidden = "hidden";
         if (element.unique) {
           input.setAttribute("unique", element.unique);
@@ -18,18 +18,7 @@ function renderForm(obj) {
 
       case "textarea":
         var input = document.createElement("textarea");
-        attrib(
-          input,
-          element.type,
-          element.key,
-          element.attr.id,
-          element.attr.className,
-          element.attr.placeholder,
-          element.attr.name,
-          element.attr.required,
-          element.attr.onchange,
-          element.attr.rows
-        );
+        input.attributes = attrib(input, element);
         labelAttrib(label, element.label, element.attr.id);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
@@ -39,21 +28,11 @@ function renderForm(obj) {
 
       case "select":
         var input = document.createElement("select");
-        attrib(
-          input,
-          element.type,
-          element.key,
-          element.attr.id,
-          element.attr.className,
-          false, //placeholder
-          element.attr.name,
-          element.attr.required,
-          element.attr.onchange
-        );
+        input.attributes = attrib(input, element);
         element.options.forEach((optnItr) => {
           var optn = document.createElement("option");
-          optn.innerHTML = optnItr.innerHTML;
-          optn.setAttribute("value", optnItr.value);
+          input.attributs = setAttr(optn, optnItr);
+          input.type = element.type;
           input.appendChild(optn);
         });
         labelAttrib(label, element.label, element.attr.id);
@@ -62,38 +41,28 @@ function renderForm(obj) {
         myForm.appendChild(input);
         myForm.appendChild(lineBreak);
         break;
+
       case "radio":
         labelAttrib(label, element.label, element.key);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
         element.options.forEach((optnItr) => {
-          var input = document.createElement("input");
-          attrib(
-            input,
-            element.type,
-            element.key,
-            optnItr.attr.id,
-            optnItr.attr.className,
-            false, //placeholder
-            optnItr.name,
-            optnItr.attr.required,
-            optnItr.attr.onchange
-          );
-          input.setAttribute("value", optnItr.value);
-          input.innerHTML = optnItr.innerHTML;
+          let input = document.createElement("input");
+          input.attributs = setAttr(input, optnItr);
+          attrib(input, element);
           myForm.appendChild(input);
-          var optlabel = document.createElement("label");
+          let optlabel = document.createElement("label");
           optlabel.classList.add("radiolabel");
           optlabel.innerHTML = optnItr.innerHTML;
           optlabel.htmlFor = optnItr.attr.id;
           myForm.appendChild(optlabel);
-          var lineBreak = document.createElement("br");
+          let lineBreak = document.createElement("br");
           myForm.appendChild(lineBreak);
         });
         var lineBreak = document.createElement("br");
         myForm.appendChild(lineBreak);
-
         break;
+
       case "checkbox":
         label.classList.add("inputlabel");
         label.innerHTML = element.label;
@@ -102,19 +71,8 @@ function renderForm(obj) {
         myForm.appendChild(lineBreak);
         element.options.forEach((optnItr) => {
           var input = document.createElement("input");
-          attrib(
-            input,
-            element.type,
-            element.key,
-            optnItr.attr.id,
-            optnItr.attr.className,
-            false, //placeholder
-            false, //name
-            false, //required
-            optnItr.attr.onchange
-          );
-          input.setAttribute("value", optnItr.value);
-          input.innerHTML = optnItr.innerHTML;
+          input.attributs = setAttr(input, optnItr);
+          attrib(input, element);
           myForm.appendChild(input);
           var optlabel = document.createElement("label");
           optlabel.classList.add("checkboxlabel");
@@ -127,50 +85,25 @@ function renderForm(obj) {
         label.innerHTML = element.label;
         label.htmlFor = element.key;
         break;
+
       case "submit":
         var input = document.createElement("input");
-        btnAttrib(
-          input,
-          element.type,
-          element.attr.id,
-          element.attr.className,
-          element.attr.name,
-          element.attr.value,
-          element.attr.onclick
-        );
-        // input.setAttribute("type", element.type);
-        // input.setAttribute("type", "button");
+        input.attributes = attrib(input, element);
         input.setAttribute("onclick", "saveFormData(event)");
         myForm.appendChild(input);
         myForm.appendChild(lineBreak);
         break;
+
       case "reset":
         var input = document.createElement("input");
-        btnAttrib(
-          input,
-          element.type,
-          element.attr.id,
-          element.attr.className,
-          element.attr.name,
-          element.attr.value,
-          element.attr.onclick
-        );
+        input.attributes = attrib(input, element);
         myForm.appendChild(input);
         myForm.appendChild(lineBreak);
         break;
+
       default:
         var input = document.createElement("input");
-        attrib(
-          input,
-          element.type,
-          element.key,
-          element.attr.id,
-          element.attr.className,
-          element.attr.placeholder,
-          element.attr.name,
-          element.attr.required,
-          element.attr.onchange
-        );
+        input.attributes = attrib(input, element);
         labelAttrib(label, element.label, element.attr.id);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);

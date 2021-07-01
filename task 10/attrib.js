@@ -1,42 +1,53 @@
-function attrib(
-  input,
-  type,
-  key,
-  id,
-  className,
-  placeholder,
-  name,
-  required,
-  onchange,
-  rows
-) {
-  input.setAttribute("type", type);
-  input.setAttribute("key", key);
-  if (type == "null") {
-    return;
-  } else {
-    input.setAttribute("id", id);
-    input.classList.add(className);
-    if (type == "checkbox" || type == "radio" || type == "select") {
-      input.removeAttribute("placeholder");
-    } else {
-      input.setAttribute("placeholder", placeholder);
-    }
-    if (type == "checkbox") {
-      input.removeAttribute("name");
-    } else {
-      input.setAttribute("name", name);
-    }
-    if (type == "checkbox") {
-      input.removeAttribute("required");
-    } else {
-      input.setAttribute("required", required);
-    }
-    input.onchange = onchange;
-    if (type == "textarea") {
-      input.setAttribute("rows", rows);
-    } else {
-      return;
+function attrib(input, element) {
+  input.setAttribute("type", element.type);
+  input.setAttribute("key", element.key);
+  if (element.type == "submit" || element.type == "reset") {
+    input.removeAttribute("key");
+  }
+  if (element.attr) {
+    objKeys = Object.keys(element.attr);
+    objKeys.forEach((attr) => {
+      switch (attr) {
+        case "className":
+          input.classList.add(element.attr.className);
+          break;
+        case "onchange":
+          input.onchange = element.attr.onchange;
+          break;
+        case "onclick":
+          input.setAttribute("onclick", "element.attr.onclick()");
+          break;
+        case "required":
+          input.setAttribute("required", "");
+          break;
+        default:
+          input.setAttribute(`${attr}`, element.attr[attr]);
+          break;
+      }
+    });
+  }
+}
+
+function setAttr(input, option) {
+  for (let key in option) {
+    if (option.hasOwnProperty(key)) {
+      if (
+        key == "required" ||
+        key == "onchange" ||
+        key == "label" ||
+        key == "onclick"
+      ) {
+      } else if (key == "className") {
+        input.setAttribute("class", option[key]);
+      } else if (typeof option[key] === "object") {
+        setAttr(input, option[key]);
+      } else if (key == "innerHTML") {
+        input.innerHTML = option[key];
+      } else if (key == "value") {
+        input.setAttribute("value", option[key]);
+      } else {
+        input.setAttribute(key, option[key]);
+      }
     }
   }
 }
@@ -45,13 +56,4 @@ function labelAttrib(label, innerHTML, htmlFor) {
   label.classList.add("inputlabel");
   label.innerHTML = innerHTML;
   label.htmlFor = htmlFor;
-}
-
-function btnAttrib(input, type, id, className, name, value, onclick) {
-  input.setAttribute("type", type);
-  input.setAttribute("id", id);
-  input.setAttribute("name", name);
-  input.classList.add(className);
-  input.setAttribute("value", value);
-  input.onclick = onclick;
 }
