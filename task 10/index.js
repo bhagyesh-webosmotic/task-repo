@@ -31,7 +31,7 @@ function renderForm(obj) {
         input.attributes = attrib(input, element);
         element.options.forEach((optnItr) => {
           var optn = document.createElement("option");
-          input.attributs = setAttr(optn, optnItr);
+          input.attributs = optnAttrib(optn, optnItr);
           input.type = element.type;
           input.appendChild(optn);
         });
@@ -48,7 +48,7 @@ function renderForm(obj) {
         myForm.appendChild(lineBreak);
         element.options.forEach((optnItr) => {
           let input = document.createElement("input");
-          input.attributs = setAttr(input, optnItr);
+          input.attributs = optnAttrib(input, optnItr);
           attrib(input, element);
           myForm.appendChild(input);
           let optlabel = document.createElement("label");
@@ -71,7 +71,7 @@ function renderForm(obj) {
         myForm.appendChild(lineBreak);
         element.options.forEach((optnItr) => {
           var input = document.createElement("input");
-          input.attributs = setAttr(input, optnItr);
+          input.attributs = optnAttrib(input, optnItr);
           attrib(input, element);
           myForm.appendChild(input);
           var optlabel = document.createElement("label");

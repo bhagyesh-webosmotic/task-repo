@@ -28,7 +28,7 @@ function attrib(input, element) {
   }
 }
 
-function setAttr(input, option) {
+function optnAttrib(input, option) {
   for (let key in option) {
     if (option.hasOwnProperty(key)) {
       if (
