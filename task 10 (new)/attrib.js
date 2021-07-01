@@ -1,6 +1,9 @@
 function attrib(input, element) {
   input.setAttribute("type", element.type);
   input.setAttribute("key", element.key);
+  if (element.unique) {
+    input.setAttribute("unique", element.unique);
+  }
   if (element.type == "submit" || element.type == "reset") {
     input.removeAttribute("key");
   }

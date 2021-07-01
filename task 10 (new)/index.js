@@ -9,9 +9,6 @@ function renderForm(obj) {
       case "null":
         input.attributes = attrib(input, element);
         input.hidden = "hidden";
-        if (element.unique) {
-          input.setAttribute("unique", element.unique);
-        }
         input.setAttribute("value", element.getValue());
         myForm.appendChild(input);
         break;
@@ -52,9 +49,12 @@ function renderForm(obj) {
           attrib(input, element);
           myForm.appendChild(input);
           let optlabel = document.createElement("label");
-          optlabel.classList.add("radiolabel");
-          optlabel.innerHTML = optnItr.innerHTML;
-          optlabel.htmlFor = optnItr.attr.id;
+          labelAttrib(
+            optlabel,
+            optnItr.innerHTML,
+            optnItr.attr.id,
+            "radiolabel"
+          );
           myForm.appendChild(optlabel);
           let lineBreak = document.createElement("br");
           myForm.appendChild(lineBreak);
