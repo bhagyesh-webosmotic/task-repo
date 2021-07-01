@@ -52,8 +52,11 @@ function optnAttrib(input, option) {
   }
 }
 
-function labelAttrib(label, innerHTML, htmlFor) {
-  label.classList.add("inputlabel");
+function labelAttrib(label, innerHTML, htmlFor, className) {
+  if (!className) {
+    label.classList.add("inputlabel");
+  }
   label.innerHTML = innerHTML;
   label.htmlFor = htmlFor;
+  label.classList.add(className);
 }

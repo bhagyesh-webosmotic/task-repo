@@ -1,0 +1,9 @@
+index : (UI of Form) / generating form out of JSON
+storage : storing / updating / deleting of data [saveData, editData, removeData]
+fetchData : fetching data from localstorage and displaying 
+attrib : attributes assigning function
+
+attrib
+fetchData 
+storage
+index
