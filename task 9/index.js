@@ -37,19 +37,13 @@ function displayContactInfo() {
             switch (dataArray[i].type) {
               case "range":
                 var element = document.createElement("input");
-                element.setAttribute("type", dataArray[i].type);
-                element.setAttribute("value", dataArray[i].value);
-                element.setAttribute("id", dataArray[i].idName);
-                element.setAttribute("min", 0);
-                element.setAttribute("max", 10);
+                attrib(element, dataArray[i]);
                 td.appendChild(element);
                 break;
 
               default:
                 var element = document.createElement("input");
-                element.setAttribute("type", dataArray[i].type);
-                element.setAttribute("value", dataArray[i].value);
-                element.setAttribute("id", dataArray[i].idName);
+                attrib(element, dataArray[i]);
                 td.appendChild(element);
                 break;
             }
@@ -57,6 +51,7 @@ function displayContactInfo() {
           //////////////////////////////////////////////Save Button/////////////////////////////////////////
           case 2:
             var save = document.createElement("button");
+            // attrib(save, dataArray[i]);
             save.setAttribute("name", dataArray[i].idName);
             save.setAttribute("input-type", dataArray[i].type);
             save.setAttribute("onclick", "saveInput(event);");
