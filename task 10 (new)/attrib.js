@@ -63,3 +63,21 @@ function labelAttrib(label, innerHTML, htmlFor, className) {
   label.htmlFor = htmlFor;
   label.classList.add(className);
 }
+function labelAttrib2(label, element, className) {
+  console.log(`label:${label}, element:${element}, classname:${className}`);
+  if (element.innerHTML) {
+    label.innerHTML = element.innerHTML;
+    label.htmlFor = element.attr.id;
+  }
+  if (element.label) {
+    label.innerHTML = element.label;
+  }
+  if (element.attr) {
+    label.htmlFor = element.attr.id;
+  }
+  if (className == undefined) {
+    label.classList.add("inputlabel");
+  } else {
+    label.classList.add(className);
+  }
+}
