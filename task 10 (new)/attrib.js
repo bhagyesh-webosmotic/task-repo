@@ -1,3 +1,4 @@
+//for appending attributes to html elements
 function attrib(input, element) {
   input.setAttribute("type", element.type);
   input.setAttribute("key", element.key);
@@ -31,6 +32,7 @@ function attrib(input, element) {
   }
 }
 
+//for appending attributes to radio & checkbox options html elements
 function optnAttrib(input, option) {
   for (let key in option) {
     if (option.hasOwnProperty(key)) {
@@ -55,29 +57,23 @@ function optnAttrib(input, option) {
   }
 }
 
-function labelAttrib(label, innerHTML, htmlFor, className) {
-  if (!className) {
-    label.classList.add("inputlabel");
-  }
-  label.innerHTML = innerHTML;
-  label.htmlFor = htmlFor;
-  label.classList.add(className);
-}
-function labelAttrib2(label, element, className) {
-  console.log(`label:${label}, element:${element}, classname:${className}`);
-  if (element.innerHTML) {
-    label.innerHTML = element.innerHTML;
-    label.htmlFor = element.attr.id;
-  }
-  if (element.label) {
-    label.innerHTML = element.label;
-  }
-  if (element.attr) {
-    label.htmlFor = element.attr.id;
-  }
+//for appending label attributes to html elements
+function labelAttrib(label, element, className) {
   if (className == undefined) {
     label.classList.add("inputlabel");
   } else {
     label.classList.add(className);
+  }
+  if (element.innerHTML && element.attr) {
+    label.innerHTML = element.innerHTML;
+    label.htmlFor = element.attr.id;
+  } else {
+    if (element.type == "radio" || element.type == "checkbox") {
+      label.htmlFor = element.key;
+    }
+    if (element.attr) {
+      label.htmlFor = element.attr.id;
+    }
+    label.innerHTML = element.label;
   }
 }

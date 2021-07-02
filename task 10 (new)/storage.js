@@ -66,7 +66,7 @@ function saveFormData(e) {
     }
   }
   fetchData();
-  //   location.reload();
+  location.reload();
 }
 
 function getRandomNumber() {

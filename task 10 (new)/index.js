@@ -16,7 +16,7 @@ function renderForm(obj) {
       case "textarea":
         let textarea = document.createElement("textarea");
         textarea.attributes = attrib(textarea, element);
-        labelAttrib(label, element.label, element.attr.id);
+        labelAttrib(label, element);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
         myForm.appendChild(textarea);
@@ -32,7 +32,7 @@ function renderForm(obj) {
           select.type = element.type;
           select.appendChild(optn);
         });
-        labelAttrib(label, element.label, element.attr.id);
+        labelAttrib(label, element);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
         myForm.appendChild(select);
@@ -40,7 +40,7 @@ function renderForm(obj) {
         break;
 
       case "radio":
-        labelAttrib(label, element.label, element.key);
+        labelAttrib(label, element);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
         element.options.forEach((optnItr) => {
@@ -49,12 +49,7 @@ function renderForm(obj) {
           attrib(input, element);
           myForm.appendChild(input);
           let optlabel = document.createElement("label");
-          labelAttrib(
-            optlabel,
-            optnItr.innerHTML,
-            optnItr.attr.id,
-            "radiolabel"
-          );
+          labelAttrib(optlabel, optnItr, "radiolabel");
           myForm.appendChild(optlabel);
           let lineBreak = document.createElement("br");
           myForm.appendChild(lineBreak);
@@ -64,7 +59,7 @@ function renderForm(obj) {
         break;
 
       case "checkbox":
-        labelAttrib(label, element.label, element.key, "inputlabel");
+        labelAttrib(label, element);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
         element.options.forEach((optnItr) => {
@@ -73,17 +68,11 @@ function renderForm(obj) {
           attrib(checkbox, element);
           myForm.appendChild(checkbox);
           let optlabel = document.createElement("label");
-          labelAttrib(
-            optlabel,
-            optnItr.innerHTML,
-            optnItr.attr.id,
-            "checkboxlabel"
-          );
+          labelAttrib(optlabel, optnItr, "checkboxlabel");
           myForm.appendChild(optlabel);
           var lineBreak = document.createElement("br");
           myForm.appendChild(lineBreak);
         });
-        labelAttrib(label, element.label, element.key);
         break;
 
       case "submit":
@@ -101,7 +90,7 @@ function renderForm(obj) {
 
       default:
         input.attributes = attrib(input, element);
-        labelAttrib(label, element.label, element.attr.id);
+        labelAttrib(label, element);
         myForm.appendChild(label);
         myForm.appendChild(lineBreak);
         myForm.appendChild(input);
