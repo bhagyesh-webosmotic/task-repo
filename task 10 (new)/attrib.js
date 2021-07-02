@@ -1,60 +1,60 @@
-//for appending attributes to html elements
-function attrib(input, element) {
-	input.setAttribute("type", element.type);
-	input.setAttribute("key", element.key);
-	if (element.unique) {
-		input.setAttribute("unique", element.unique);
-	}
-	if (element.type == "submit" || element.type == "reset") {
-		input.removeAttribute("key");
-	}
-	if (element.attr) {
-		objKeys = Object.keys(element.attr);
-		objKeys.forEach((attr) => {
-			switch (attr) {
-				case "className":
-					input.classList.add(element.attr.className);
-					break;
-				case "onchange":
-					input.onchange = element.attr.onchange;
-					break;
-				case "onclick":
-					input.onclick = element.attr.onclick;
-					break;
-				case "required":
-					input.setAttribute("required", "");
-					break;
-				default:
-					input.setAttribute(`${attr}`, element.attr[attr]);
-					break;
-			}
-		});
-	}
-}
-
-//for appending attributes to radio & checkbox options html elements
-function optnAttrib(input, option) {
+let chkboxArr = [];
+//for appending attributes to all html elements
+function attrib(input, option) {
 	for (let key in option) {
 		if (option.hasOwnProperty(key)) {
-			if (
-				key == "required" ||
-				key == "onchange" ||
-				key == "label" ||
-				key == "onclick"
-			) {
+			if (key == "required" || key == "onchange" || key == "label") {
+			} else if (key == "onclick") {
+				input.onclick = option[key];
+			} else if (key == "onchange") {
+				input.onchange = option[key];
 			} else if (key == "className") {
 				input.setAttribute("class", option[key]);
-			} else if (typeof option[key] === "object") {
-				optnAttrib(input, option[key]);
 			} else if (key == "innerHTML") {
 				input.innerHTML = option[key];
 			} else if (key == "value") {
 				input.setAttribute("value", option[key]);
+			} else if (typeof option[key] === "object") {
+				attrib(input, option[key]);
 			} else {
+				if (option[key] == "hobbies") {
+					input.setAttribute("onfocus", "focusFunction(event)");
+				} else {
+					input.setAttribute("onblur", "blurFunction(event)");
+				}
 				input.setAttribute(key, option[key]);
 			}
 		}
 	}
+}
+
+function focusFunction(e) {
+	targetKey = e.target.getAttribute("key");
+	elementsArray.forEach((element) => {
+		if (element.key == targetKey) {
+			if (targetKey == "hobbies") {
+				if (chkboxArr.includes(e.target.value)) {
+				} else {
+					chkboxArr.push(e.target.value);
+				}
+				element.value = chkboxArr;
+				console.log(`element value:${element.value}`);
+				console.log(element);
+				console.log(e.target.value);
+			}
+		}
+	});
+}
+
+function blurFunction(e) {
+	elementValue = e.target.value;
+	targetKey = e.target.getAttribute("key");
+	e.target.setAttribute("value", elementValue);
+	elementsArray.forEach((element) => {
+		if (element.key == targetKey) {
+			element.value = e.target.value;
+		}
+	});
 }
 
 //for appending label attributes to html elements
