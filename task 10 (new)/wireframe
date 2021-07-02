@@ -7,3 +7,32 @@ attrib
 fetchData 
 storage
 index
+
+
+
+-------------------------------------------------
+label , innerHTML, htmlFor
+
+
+text    :label, element.label, element.attr.id
+
+email   :label, element.label, element.attr.id
+
+tel     :label, element.label, element.attr.id
+
+number  :label, element.label, element.attr.id
+
+textarea:label, element.label, element.attr.id
+
+select  :label, element.label, element.attr.id
+
+radio   :label, element.label, element.key
+        :optlabel, optnItr.innerHTML, optnItr.attr.id, "radiolabel"
+
+checkbox:label, element.label, element.key
+        :optlabel, optnItr.innerHTML, optnItr.attr.id, "checkboxlabel"
+
+
+null/
+submit/
+reset/

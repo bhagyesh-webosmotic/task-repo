@@ -2,15 +2,16 @@ const myForm = document.getElementById("jsonForm");
 
 function renderForm(obj) {
   obj.forEach((element) => {
-    let label = document.createElement("label");
-    var lineBreak = document.createElement("br");
+    const label = document.createElement("label");
+    const lineBreak = document.createElement("br");
     let input = document.createElement("input");
     switch (element.type) {
       case "null":
-        input.attributes = attrib(input, element);
-        input.hidden = "hidden";
-        input.setAttribute("value", element.getValue());
-        myForm.appendChild(input);
+        let inputNull = document.createElement("input");
+        inputNull.attributes = attrib(inputNull, element);
+        inputNull.hidden = "hidden";
+        inputNull.setAttribute("value", element.getValue());
+        myForm.appendChild(inputNull);
         break;
 
       case "textarea":
@@ -54,8 +55,8 @@ function renderForm(obj) {
           let lineBreak = document.createElement("br");
           myForm.appendChild(lineBreak);
         });
-        var lineBreak = document.createElement("br");
-        myForm.appendChild(lineBreak);
+        const lineBreak2 = document.createElement("br");
+        myForm.appendChild(lineBreak2);
         break;
 
       case "checkbox":
@@ -70,8 +71,8 @@ function renderForm(obj) {
           let optlabel = document.createElement("label");
           labelAttrib(optlabel, optnItr, "checkboxlabel");
           myForm.appendChild(optlabel);
-          var lineBreak = document.createElement("br");
-          myForm.appendChild(lineBreak);
+          const lineBreak3 = document.createElement("br");
+          myForm.appendChild(lineBreak3);
         });
         break;
 
