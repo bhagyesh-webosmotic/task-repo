@@ -18,7 +18,7 @@ function attrib(input, option) {
 				attrib(input, option[key]);
 			} else {
 				if (option[key] == "hobbies") {
-					input.setAttribute("onfocus", "focusFunction(event)");
+					input.setAttribute("onclick", "focusFunction(event)");
 				} else {
 					input.setAttribute("onblur", "blurFunction(event)");
 				}
@@ -34,13 +34,15 @@ function focusFunction(e) {
 		if (element.key == targetKey) {
 			if (targetKey == "hobbies") {
 				if (chkboxArr.includes(e.target.value)) {
+					chkboxArr.pop(e.target.value);
 				} else {
 					chkboxArr.push(e.target.value);
 				}
 				element.value = chkboxArr;
+				console.clear();
+				console.log(chkboxArr);
 				console.log(`element value:${element.value}`);
 				console.log(element);
-				console.log(e.target.value);
 			}
 		}
 	});
